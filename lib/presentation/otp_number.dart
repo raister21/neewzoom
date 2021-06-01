@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neewzoom/constants/ui_constants.dart';
+import 'package:neewzoom/data/OTP/bloc/otp_bloc.dart';
+import 'package:neewzoom/presentation/custome_widgets/country_drop_down.dart';
+import 'package:neewzoom/presentation/otp_verification.dart';
 
 class OtpPhoneNumberPage extends StatefulWidget {
   @override
@@ -10,6 +13,8 @@ class OtpPhoneNumberPage extends StatefulWidget {
 
 class _OtpPhoneNumberPageState extends State<OtpPhoneNumberPage> {
   final UIconstants uIconstants = UIconstants();
+  final TextEditingController _phoneNumberController = TextEditingController();
+  final CountryDropDown countryDropDown = CountryDropDown();
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +122,7 @@ class _OtpPhoneNumberPageState extends State<OtpPhoneNumberPage> {
         children: [
           Expanded(
             flex: 3,
-            child: _internationalNumberDropDown(),
+            child: countryDropDown,
           ),
           Expanded(
             flex: 7,
@@ -140,6 +145,7 @@ class _OtpPhoneNumberPageState extends State<OtpPhoneNumberPage> {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: uIconstants.defaultsmallPads),
         child: TextField(
+          controller: _phoneNumberController,
           showCursor: false,
           style: TextStyle(
               fontFamily: 'WorkSans',
@@ -148,41 +154,47 @@ class _OtpPhoneNumberPageState extends State<OtpPhoneNumberPage> {
           decoration: InputDecoration(
               focusedBorder: InputBorder.none, border: InputBorder.none),
           keyboardType: TextInputType.phone,
-          onChanged: (value) => {},
+          onChanged: (value) => {
+            if (value.isNotEmpty)
+              {
+                BlocProvider.of<OtpBloc>(context)
+                    .add(OtpPhoneNumberChanged(phoneNumber: int.parse(value)))
+              }
+          },
         ),
       ),
     );
   }
 
-  Widget _internationalNumberDropDown() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: uIconstants.defaultsmallPads / 2),
-          child: Image(
-            height: 14,
-            image: AssetImage('assets/image/nepalFlag.png'),
-          ),
-        ),
-        Text(
-          "+977",
-          style: TextStyle(
-              fontFamily: 'WorkSans',
-              color: uIconstants.defaultFontColor,
-              fontWeight: FontWeight.w700),
-        ),
-        GestureDetector(
-          onTap: () {
-            print("clicked");
-          },
-          child: Icon(Icons.arrow_drop_down),
-        ),
-      ],
-    );
-  }
+  // Widget _internationalNumberDropDown() {
+  //   return Row(
+  //     mainAxisAlignment: MainAxisAlignment.center,
+  //     crossAxisAlignment: CrossAxisAlignment.center,
+  //     children: [
+  //       Padding(
+  //         padding: EdgeInsets.symmetric(
+  //             horizontal: uIconstants.defaultsmallPads / 2),
+  //         child: Image(
+  //           height: 14,
+  //           image: AssetImage('assets/image/nepalFlag.png'),
+  //         ),
+  //       ),
+  //       Text(
+  //         "+977",
+  //         style: TextStyle(
+  //             fontFamily: 'WorkSans',
+  //             color: uIconstants.defaultFontColor,
+  //             fontWeight: FontWeight.w700),
+  //       ),
+  //       GestureDetector(
+  //         onTap: () {
+  //           print("clicked");
+  //         },
+  //         child: Icon(Icons.arrow_drop_down),
+  //       ),
+  //     ],
+  //   );
+  // }
 
   Widget _getOTPbutton() {
     return Padding(
@@ -196,7 +208,13 @@ class _OtpPhoneNumberPageState extends State<OtpPhoneNumberPage> {
               Radius.circular(uIconstants.defaultInputBorderRadius),
             )),
         child: TextButton(
-          onPressed: () {},
+          onPressed: () {
+            BlocProvider.of<OtpBloc>(context).add(OtpPhoneNumberSubmit(
+                countryCode: "+977",
+                phoneNumber: int.parse(_phoneNumberController.text)));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => OTPVerificationPage()));
+          },
           child: Text(
             "Get OTP",
             style: TextStyle(

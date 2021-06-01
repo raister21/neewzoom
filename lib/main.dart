@@ -4,7 +4,11 @@ import 'package:neewzoom/constants/ui_constants.dart';
 import 'package:neewzoom/presentation/otp_number.dart';
 import 'package:neewzoom/presentation/otp_verification.dart';
 
+import 'constants/app_bloc_observer.dart';
+import 'data/OTP/bloc/otp_bloc.dart';
+
 void main() {
+  Bloc.observer = AppBlocObserver();
   runApp(MyApp());
 }
 
@@ -18,7 +22,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         primaryColor: uIconstants.defaultPrimaryColor,
       ),
-      home: SafeArea(child: OtpPhoneNumberPage()),
+      home: BlocProvider(
+        create: (context) => OtpBloc(),
+        child: SafeArea(child: OtpPhoneNumberPage()),
+      ),
     );
   }
 }

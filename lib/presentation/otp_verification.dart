@@ -16,7 +16,6 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
     _count = 0;
     _verificationCode = "";
 
-    // focusNodes[_count].requestFocus();
     super.initState();
   }
 
@@ -33,19 +32,12 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
     TextEditingController(),
   ];
 
-  bool _isVerificationCodeValid() {
-    for (var controller in textControllers) {
-      if (controller.text == null) {
-        return false;
-      }
-    }
-    return true;
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _otpVerificationView(),
+    return SafeArea(
+      child: Scaffold(
+        body: _otpVerificationView(),
+      ),
     );
   }
 
@@ -70,7 +62,9 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
           icon: Icon(
             Icons.arrow_back_ios,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
       ),
     );
