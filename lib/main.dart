@@ -14,6 +14,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   final UIconstants uIconstants = UIconstants();
+  OtpBloc _otpBloc = OtpBloc();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,8 +23,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         primaryColor: uIconstants.defaultPrimaryColor,
       ),
-      home: BlocProvider(
-        create: (context) => OtpBloc(),
+      home: BlocProvider.value(
+        value: _otpBloc,
         child: SafeArea(child: OtpPhoneNumberPage()),
       ),
     );

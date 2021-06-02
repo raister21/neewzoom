@@ -14,7 +14,9 @@ class OtpPhoneNumberChanged extends OtpEvent {
 
 class OtpCountryCodeChanged extends OtpEvent {
   final String countryCode;
-  const OtpCountryCodeChanged({required this.countryCode});
+  final String countryFlag;
+  const OtpCountryCodeChanged(
+      {required this.countryCode, required this.countryFlag});
 }
 
 class OtpPhoneNumberSubmit extends OtpEvent {

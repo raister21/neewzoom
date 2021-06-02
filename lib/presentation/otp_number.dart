@@ -14,7 +14,25 @@ class OtpPhoneNumberPage extends StatefulWidget {
 class _OtpPhoneNumberPageState extends State<OtpPhoneNumberPage> {
   final UIconstants uIconstants = UIconstants();
   final TextEditingController _phoneNumberController = TextEditingController();
-  final CountryDropDown countryDropDown = CountryDropDown();
+  late CountryDropDown countryDropDown;
+  final _dropDownKey = GlobalKey<CountryDropDownState>();
+
+  void _countryChanged({country, flag}) {
+    BlocProvider.of<OtpBloc>(context)
+        .add(OtpCountryCodeChanged(countryCode: country, countryFlag: flag));
+  }
+
+  @override
+  void initState() {
+    countryDropDown = CountryDropDown(
+      key: _dropDownKey,
+      countryChanged: (String country, String flag) => {
+        _countryChanged(country: country, flag: flag),
+      },
+    );
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,10 +138,7 @@ class _OtpPhoneNumberPageState extends State<OtpPhoneNumberPage> {
       ),
       child: Row(
         children: [
-          Expanded(
-            flex: 3,
-            child: countryDropDown,
-          ),
+          Expanded(flex: 3, child: countryDropDown),
           Expanded(
             flex: 7,
             child: _inputNumber(),
@@ -166,36 +181,6 @@ class _OtpPhoneNumberPageState extends State<OtpPhoneNumberPage> {
     );
   }
 
-  // Widget _internationalNumberDropDown() {
-  //   return Row(
-  //     mainAxisAlignment: MainAxisAlignment.center,
-  //     crossAxisAlignment: CrossAxisAlignment.center,
-  //     children: [
-  //       Padding(
-  //         padding: EdgeInsets.symmetric(
-  //             horizontal: uIconstants.defaultsmallPads / 2),
-  //         child: Image(
-  //           height: 14,
-  //           image: AssetImage('assets/image/nepalFlag.png'),
-  //         ),
-  //       ),
-  //       Text(
-  //         "+977",
-  //         style: TextStyle(
-  //             fontFamily: 'WorkSans',
-  //             color: uIconstants.defaultFontColor,
-  //             fontWeight: FontWeight.w700),
-  //       ),
-  //       GestureDetector(
-  //         onTap: () {
-  //           print("clicked");
-  //         },
-  //         child: Icon(Icons.arrow_drop_down),
-  //       ),
-  //     ],
-  //   );
-  // }
-
   Widget _getOTPbutton() {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: uIconstants.defaultsmallPads * 2),
@@ -207,21 +192,30 @@ class _OtpPhoneNumberPageState extends State<OtpPhoneNumberPage> {
             borderRadius: BorderRadius.all(
               Radius.circular(uIconstants.defaultInputBorderRadius),
             )),
-        child: TextButton(
-          onPressed: () {
-            BlocProvider.of<OtpBloc>(context).add(OtpPhoneNumberSubmit(
-                countryCode: "+977",
-                phoneNumber: int.parse(_phoneNumberController.text)));
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => OTPVerificationPage()));
+        child: BlocBuilder<OtpBloc, OtpState>(
+          builder: (context, state) {
+            return TextButton(
+              onPressed: () {
+                if (_phoneNumberController.text.isNotEmpty) {
+                  BlocProvider.of<OtpBloc>(context).add(OtpPhoneNumberSubmit(
+                      countryCode: state.countryCode ?? "+977",
+                      phoneNumber: int.parse(_phoneNumberController.text)));
+                  _dropDownKey.currentState!.removeDropDown();
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => OTPVerificationPage()));
+                } else {}
+              },
+              child: Text(
+                "Get OTP",
+                style: TextStyle(
+                    fontFamily: 'WorkSans',
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700),
+              ),
+            );
           },
-          child: Text(
-            "Get OTP",
-            style: TextStyle(
-                fontFamily: 'WorkSans',
-                color: Colors.white,
-                fontWeight: FontWeight.w700),
-          ),
         ),
       ),
     );

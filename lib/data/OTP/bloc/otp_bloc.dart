@@ -17,9 +17,12 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
       yield state.copywith(phoneNumber: event.phoneNumber);
     }
     if (event is OtpCountryCodeChanged) {
-      yield state.copywith(countryCode: event.countryCode);
+      yield state.copywith(
+          countryCode: event.countryCode, countryFlag: event.countryFlag);
     }
     if (event is OtpPhoneNumberSubmit) {
+      print(state.countryCode);
+      print(state.phoneNumber);
       yield OtpPhoneNumberSubmitted(
           countryCount: event.countryCode, phoneNumber: event.phoneNumber);
     }

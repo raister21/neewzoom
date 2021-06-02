@@ -2,20 +2,18 @@ part of 'otp_bloc.dart';
 
 class OtpState {
   final String? countryCode;
+  final String? countryFlag;
   final int? phoneNumber;
 
-  const OtpState({this.phoneNumber, this.countryCode});
+  const OtpState({this.phoneNumber, this.countryCode, this.countryFlag});
 
-  OtpState copywith({phoneNumber, countryCode}) {
+  OtpState copywith({phoneNumber, countryCode, countryFlag}) {
     return OtpState(
         phoneNumber: phoneNumber ?? this.phoneNumber,
-        countryCode: countryCode ?? this.countryCode);
+        countryCode: countryCode ?? this.countryCode,
+        countryFlag: countryFlag ?? this.countryFlag);
   }
 }
-
-// class OtpInitial extends OtpState {
-
-// }
 
 class OtpPhoneNumberSubmitted extends OtpState {
   final String countryCount;
