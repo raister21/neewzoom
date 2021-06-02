@@ -9,6 +9,7 @@ class UIconstants {
   final Color defaultFontColor = Color.fromARGB(255, 20, 20, 20);
   final Color defaultBackGroundColor = Color.fromARGB(255, 234, 237, 239);
   final Color defaultPrimaryColor = Color.fromARGB(255, 9, 76, 114);
+  final Color defaultDarkBackground = Color.fromARGB(255, 123, 138, 146);
   final double defaultInputBorderRadius = 5.0;
   final double defaultButtonHeight = 50;
 }

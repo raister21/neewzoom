@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neewzoom/constants/ui_constants.dart';
 import 'package:neewzoom/presentation/otp_number.dart';
 import 'package:neewzoom/presentation/otp_verification.dart';
+import 'package:neewzoom/presentation/schedule_meeting/schedule_meeting_page.dart';
 
 import 'constants/app_bloc_observer.dart';
 import 'data/OTP/bloc/otp_bloc.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       ),
       home: BlocProvider.value(
         value: _otpBloc,
-        child: SafeArea(child: OtpPhoneNumberPage()),
+        child: SafeArea(child: ScheduleMeetingPage()),
       ),
     );
   }

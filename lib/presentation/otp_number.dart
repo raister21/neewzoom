@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neewzoom/constants/ui_constants.dart';
 import 'package:neewzoom/data/OTP/bloc/otp_bloc.dart';
-import 'package:neewzoom/presentation/custome_widgets/country_drop_down.dart';
+import 'package:neewzoom/custome_widgets/country_drop_down.dart';
 import 'package:neewzoom/presentation/otp_verification.dart';
 
 class OtpPhoneNumberPage extends StatefulWidget {
