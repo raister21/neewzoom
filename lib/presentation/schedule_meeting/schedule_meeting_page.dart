@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:neewzoom/constants/ui_constants.dart';
+import 'package:neewzoom/custome_widgets/schedue_meeting_button.dart';
 
 class ScheduleMeetingPage extends StatefulWidget {
   const ScheduleMeetingPage({Key? key}) : super(key: key);
@@ -11,6 +12,7 @@ class ScheduleMeetingPage extends StatefulWidget {
 
 class _ScheduleMeetingPageState extends State<ScheduleMeetingPage> {
   UIconstants uIconstants = UIconstants();
+  ScheduleMeetingButton _scheduleMeetingButton = ScheduleMeetingButton();
   bool _isUsingPMI = false;
   bool _isPasswordRequired = false;
   bool _isWaitingRoomUnabled = false;
@@ -32,7 +34,7 @@ class _ScheduleMeetingPageState extends State<ScheduleMeetingPage> {
       color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
-        children: [_contentBlock(), _scheduleMeetingButton()],
+        children: [_contentBlock(), _scheduleMeetingButton],
       ),
     );
   }
@@ -357,31 +359,31 @@ class _ScheduleMeetingPageState extends State<ScheduleMeetingPage> {
     );
   }
 
-  Widget _scheduleMeetingButton() {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-          vertical: uIconstants.defaultsmallPads,
-          horizontal: uIconstants.defaultPads),
-      child: Container(
-          height: uIconstants.defaultButtonHeight,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              borderRadius: BorderRadius.all(
-                Radius.circular(uIconstants.defaultInputBorderRadius),
-              )),
-          child: TextButton(
-            onPressed: () {},
-            child: Text(
-              "Schedule Meeting",
-              style: TextStyle(
-                  fontFamily: 'WorkSans',
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700),
-            ),
-          )),
-    );
-  }
+  // Widget _scheduleMeetingButton() {
+  //   return Padding(
+  //     padding: EdgeInsets.symmetric(
+  //         vertical: uIconstants.defaultsmallPads,
+  //         horizontal: uIconstants.defaultPads),
+  //     child: Container(
+  //         height: uIconstants.defaultButtonHeight,
+  //         width: MediaQuery.of(context).size.width,
+  //         decoration: BoxDecoration(
+  //             color: Theme.of(context).primaryColor,
+  //             borderRadius: BorderRadius.all(
+  //               Radius.circular(uIconstants.defaultInputBorderRadius),
+  //             )),
+  //         child: TextButton(
+  //           onPressed: () {},
+  //           child: Text(
+  //             "Schedule Meeting",
+  //             style: TextStyle(
+  //                 fontFamily: 'WorkSans',
+  //                 color: Colors.white,
+  //                 fontWeight: FontWeight.w700),
+  //           ),
+  //         )),
+  //   );
+  // }
 
   Widget _userPersonalIdRadioBtn() {
     return Container(
