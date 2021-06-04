@@ -50,7 +50,7 @@ class _SelectRegionPageState extends State<SelectRegionPage> {
           vertical: uIconstants.defaultsmallPads,
           horizontal: uIconstants.defaultPads),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           TextButton(
             onPressed: () {},
