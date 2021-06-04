@@ -73,6 +73,7 @@ class SelectTimeZonePage extends StatelessWidget {
             ),
             decoration: InputDecoration(
               focusedBorder: InputBorder.none,
+              hintText: "Search",
               border: InputBorder.none,
               suffixIcon: Padding(
                   padding: EdgeInsets.symmetric(vertical: 12),

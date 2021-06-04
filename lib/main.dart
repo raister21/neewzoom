@@ -6,6 +6,7 @@ import 'package:neewzoom/presentation/otp_verification.dart';
 import 'package:neewzoom/presentation/schedule_meeting/approve_block_page.dart';
 import 'package:neewzoom/presentation/schedule_meeting/repeat_page.dart';
 import 'package:neewzoom/presentation/schedule_meeting/schedule_meeting_page.dart';
+import 'package:neewzoom/presentation/schedule_meeting/select_region_page.dart';
 import 'package:neewzoom/presentation/schedule_meeting/select_time_zone_page.dart';
 
 import 'constants/app_bloc_observer.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       ),
       home: BlocProvider.value(
         value: _otpBloc,
-        child: SafeArea(child: ApproveBlockPage()),
+        child: SafeArea(child: SelectRegionPage()),
       ),
     );
   }
