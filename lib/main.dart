@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neewzoom/constants/ui_constants.dart';
+import 'package:neewzoom/presentation/meetings/meetings_details_page.dart';
 import 'package:neewzoom/presentation/meetings/meetings_page.dart';
+import 'package:neewzoom/presentation/navigation/navigation_page.dart';
 import 'package:neewzoom/presentation/otp_number.dart';
 import 'package:neewzoom/presentation/otp_verification.dart';
 import 'package:neewzoom/presentation/schedule_meeting/approve_block_page.dart';
@@ -26,12 +28,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'NeewZoom',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: MaterialColor(0xFF094C72, uIconstants.defaultSwatch),
         primaryColor: uIconstants.defaultPrimaryColor,
       ),
       home: BlocProvider.value(
         value: _otpBloc,
-        child: SafeArea(child: MeetingsPage()),
+        // child: SafeArea(child: NavigationPage()),
+        child: SafeArea(child: MeetingsDetailsPage()),
       ),
     );
   }

@@ -359,32 +359,6 @@ class _ScheduleMeetingPageState extends State<ScheduleMeetingPage> {
     );
   }
 
-  // Widget _scheduleMeetingButton() {
-  //   return Padding(
-  //     padding: EdgeInsets.symmetric(
-  //         vertical: uIconstants.defaultsmallPads,
-  //         horizontal: uIconstants.defaultPads),
-  //     child: Container(
-  //         height: uIconstants.defaultButtonHeight,
-  //         width: MediaQuery.of(context).size.width,
-  //         decoration: BoxDecoration(
-  //             color: Theme.of(context).primaryColor,
-  //             borderRadius: BorderRadius.all(
-  //               Radius.circular(uIconstants.defaultInputBorderRadius),
-  //             )),
-  //         child: TextButton(
-  //           onPressed: () {},
-  //           child: Text(
-  //             "Schedule Meeting",
-  //             style: TextStyle(
-  //                 fontFamily: 'WorkSans',
-  //                 color: Colors.white,
-  //                 fontWeight: FontWeight.w700),
-  //           ),
-  //         )),
-  //   );
-  // }
-
   Widget _userPersonalIdRadioBtn() {
     return Container(
         child: SwitchListTile(

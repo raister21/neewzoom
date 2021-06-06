@@ -50,33 +50,6 @@ class _AvatarsStackState extends State<AvatarsStack> {
     }
     return Stack(
       children: _getAvatars(),
-      // children: [
-      //   CircleAvatar(
-      //     radius: 20,
-      //     backgroundImage: AssetImage('assets/image/demo_profile.png'),
-      //   ),
-      //   Padding(
-      //     padding: EdgeInsets.only(left: 26),
-      //     child: CircleAvatar(
-      //       radius: 20,
-      //       backgroundImage: AssetImage('assets/image/demo_profile.png'),
-      //     ),
-      //   ),
-      //   Padding(
-      //     padding: EdgeInsets.only(left: 26 * 2),
-      //     child: CircleAvatar(
-      //       radius: 20,
-      //       backgroundImage: AssetImage('assets/image/demo_profile.png'),
-      //     ),
-      //   ),
-      //   Padding(
-      //     padding: EdgeInsets.only(left: 26 * 3),
-      //     child: CircleAvatar(
-      //       radius: 20,
-      //       backgroundImage: AssetImage('assets/image/demo_profile.png'),
-      //     ),
-      //   ),
-      // ],
     );
   }
 
