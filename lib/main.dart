@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neewzoom/constants/ui_constants.dart';
+import 'package:neewzoom/presentation/chats/list_of_chats_page.dart';
 import 'package:neewzoom/presentation/meetings/meetings_details_page.dart';
 import 'package:neewzoom/presentation/meetings/meetings_page.dart';
 import 'package:neewzoom/presentation/meetings/personal_id_page.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
       home: BlocProvider.value(
         value: _otpBloc,
         // child: SafeArea(child: NavigationPage()),
-        child: SafeArea(child: PersonalIdPage()),
+        child: SafeArea(child: ListOfChatsPage()),
       ),
     );
   }

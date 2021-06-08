@@ -11,6 +11,7 @@ class UIconstants {
   final Color defaultPrimaryColor = Color.fromARGB(255, 9, 76, 114);
   final Color defaultDarkBackground = Color.fromARGB(255, 123, 138, 146);
   final Color defaultLinkColor = Color.fromARGB(255, 2, 73, 211);
+  final Color defaultOnlineColor = Color.fromARGB(255, 9, 114, 100);
   final double defaultInputBorderRadius = 5.0;
   final double defaultButtonHeight = 50;
 
